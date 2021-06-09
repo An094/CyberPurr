@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9013049399907278118}
   - component: {fileID: 9013049399907278115}
   - component: {fileID: 8872926715683133405}
+  - component: {fileID: 1686451665833144940}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -92,7 +93,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 8079465181741307060, guid: 44db1da99e407e543a28c0a7fb561f09, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -116,7 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8614eb2a0364d42b3d05493a9144a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!50 &8872926715683133405
 Rigidbody2D:
   serializedVersion: 4
@@ -138,3 +138,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &1686451665833144940
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9013049399907278119}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.012632012, y: 0.111162186}
+  m_Size: {x: 0.7625172, y: 1.3276756}
+  m_Direction: 0

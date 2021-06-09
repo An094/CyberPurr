@@ -55,7 +55,7 @@ public class Helicopter : MonoBehaviour
         float time = Time.time - startTime;
         if (time >= timeDropSoldier && !wasDropSolder)
         {
-            Instantiate(soldier, transform.position, transform.rotation);
+            Instantiate(soldier, transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
             wasDropSolder = true;
         }
 
