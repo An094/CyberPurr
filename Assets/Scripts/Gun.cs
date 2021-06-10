@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -8,7 +9,7 @@ public class Gun : MonoBehaviour
     public GameObject bullet;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,7 +27,12 @@ public class Gun : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
+
             Instantiate(bullet, transform.position, transform.rotation);
+
+            //GameObject bullet = ObjectPooler.Instance.SpawnFromPool("Bullet", transform.position,transform.rotation);
+            //bullet.SetActive(true);
+           
         }
     }
 }

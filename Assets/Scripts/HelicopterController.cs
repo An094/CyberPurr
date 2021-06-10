@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HelicopterController : MonoBehaviour
 {
-    public GameObject helicopterPrefab;
     private float spawnTime;
     private Vector3 screenBounds;
     // Start is called before the first frame update
@@ -16,17 +15,26 @@ public class HelicopterController : MonoBehaviour
 
     void spawnHelicopter()
     {
-        GameObject hel = Instantiate(helicopterPrefab);
         int side = Random.Range(0, 2);
-        float height = Random.Range(screenBounds.y * 0.7f, screenBounds.y*0.9f);
+        Debug.Log(side);
+        Vector2 pos;
+        float height = Random.Range(screenBounds.y * 0.7f, screenBounds.y * 0.9f);
         if (side == 0)
         {
-            hel.transform.position = new Vector2(-screenBounds.x, height);
+            pos = new Vector2(-screenBounds.x, height);
         }
         else
         {
-            hel.transform.position = new Vector2(screenBounds.x, height);
+            pos = new Vector2(screenBounds.x, height);
         }
+
+        GameObject hel = ObjectPooler.Instance.SpawnFromPool("Helicopter", pos,transform.rotation);
+        if(hel == null)
+        {
+            Debug.Log("Helicopter is null");
+            return;
+        }
+        hel.SetActive(true);
     }
 
     IEnumerator helicopterWave()
@@ -37,12 +45,5 @@ public class HelicopterController : MonoBehaviour
             yield return new WaitForSeconds(spawnTime);
             spawnHelicopter();
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

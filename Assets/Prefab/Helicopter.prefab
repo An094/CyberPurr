@@ -116,6 +116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  fragment: {fileID: 0}
-  explosion: {fileID: 0}
+  fragment: {fileID: 7134022745574193736, guid: 24a7508267939594d8a127c514534dba, type: 3}
+  explosion: {fileID: 1908809751491664929, guid: b2bfebef81f0bd04caedcdfa42b9e071, type: 3}
   soldier: {fileID: 9013049399907278119, guid: df3a40e2459c33140b10a0e9ad91eb8b, type: 3}

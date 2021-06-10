@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Helicopter : MonoBehaviour
+public class Helicopter : MonoBehaviour, IPooledObject
 {
     public float speed;
     public GameObject fragment;
@@ -15,18 +15,21 @@ public class Helicopter : MonoBehaviour
     private bool wasDropSolder;
 
     private Vector3 screenBounds;
-
-    // Start is called before the first frame update
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+    }
+    public void OnObjectSpawn()
+    {
         Vector3 pos = transform.position;
         direction = (pos.x) > 0 ? 0 : 1;  // 0 go to left, 1 go to right
         if (direction == 0) transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+        else transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
         timeDropSoldier = Random.Range(1.0f, 5.0f);
-        startTime = Time.realtimeSinceStartup;
+        startTime = Time.time;
         wasDropSolder = false;
+
     }
 
     // Update is called once per frame
@@ -39,7 +42,8 @@ public class Helicopter : MonoBehaviour
             pos.x -= speed * Time.deltaTime;
             if (pos.x < screenBounds.x * -1)
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
         }
         else
@@ -47,7 +51,8 @@ public class Helicopter : MonoBehaviour
             pos.x += speed * Time.deltaTime;
             if (pos.x > screenBounds.x)
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
         }
         transform.position = pos;
@@ -55,7 +60,14 @@ public class Helicopter : MonoBehaviour
         float time = Time.time - startTime;
         if (time >= timeDropSoldier && !wasDropSolder)
         {
-            Instantiate(soldier, transform.position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
+            Debug.Log("Spawn Soldier");
+            GameObject soldier = ObjectPooler.Instance.SpawnFromPool("Soldier", transform.position,transform.rotation);
+            if(soldier == null)
+            {
+                Debug.Log("Soldier is null");
+                return;
+            }
+            soldier.SetActive(true);
             wasDropSolder = true;
         }
 
