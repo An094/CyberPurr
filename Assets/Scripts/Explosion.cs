@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion : MonoBehaviour, IPooledObject
 {
     Animator animator;
     // Start is called before the first frame update
-    void Start()
+    public void OnObjectSpawn()
     {
         animator = GetComponent<Animator>();
+        this.gameObject.SetActive(true);
         StartCoroutine(StopAnimation());
     }
 
     IEnumerator StopAnimation()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.4f);
         animator.SetBool("isFinish", true);
         this.gameObject.SetActive(false);
     }

@@ -71,6 +71,7 @@ public class Soldier : MonoBehaviour, IPooledObject
             if(!endFly)
             {
                 animator.SetBool("endFly", true);
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 endFly = true;
             }
             if (isRemove)

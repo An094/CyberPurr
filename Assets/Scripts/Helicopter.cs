@@ -5,9 +5,9 @@ using UnityEngine;
 public class Helicopter : MonoBehaviour, IPooledObject
 {
     public float speed;
-    public GameObject fragment;
-    public GameObject explosion;
-    public GameObject soldier;
+    //public GameObject fragment;
+    //public GameObject explosion;
+    //public GameObject soldier;
 
     private int direction;
     private float timeDropSoldier;
@@ -80,8 +80,12 @@ public class Helicopter : MonoBehaviour, IPooledObject
     {
         if(collision.gameObject.tag == "Bullet")
         {
-            Instantiate(explosion, transform.position, transform.rotation);
-            Instantiate(fragment, transform.position, transform.rotation);
+            //Instantiate(explosion, transform.position, transform.rotation);
+            //Instantiate(fragment, transform.position, transform.rotation);
+            GameObject explosion = ObjectPooler.Instance.SpawnFromPool("Explosion", transform.position, transform.rotation);
+            GameObject fragment = ObjectPooler.Instance.SpawnFromPool("Fragment", transform.position, transform.rotation);
+            explosion.SetActive(true);
+            fragment.SetActive(true);
             this.gameObject.SetActive(false);
         }
     }
