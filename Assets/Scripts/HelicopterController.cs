@@ -16,7 +16,7 @@ public class HelicopterController : MonoBehaviour
     void spawnHelicopter()
     {
         int side = Random.Range(0, 2);
-        Debug.Log(side);
+        //Debug.Log(side);
         Vector2 pos;
         float height = Random.Range(screenBounds.y * 0.7f, screenBounds.y * 0.9f);
         if (side == 0)

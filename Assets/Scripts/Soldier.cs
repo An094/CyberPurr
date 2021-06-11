@@ -6,13 +6,14 @@ public class Soldier : MonoBehaviour, IPooledObject
 {
     private float speed = 3.0f;
     Animator animator;
-    Rigidbody2D rb2d;
+    private Rigidbody2D rb2d;
 
     private bool endFly;
     private bool isRemove;
     int direction;
 
     private Vector3 screenBounds;
+    private const float defaultGravity = 0.1f;
     // Start is called before the first frame update
 
     void Start()
@@ -36,6 +37,9 @@ public class Soldier : MonoBehaviour, IPooledObject
         {
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         }
+        rb2d = GetComponent<Rigidbody2D>();
+        rb2d.gravityScale = defaultGravity;
+
     }
 
     // Update is called once per frame
