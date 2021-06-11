@@ -28,10 +28,10 @@ public class Gun : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
 
-            Instantiate(bullet, transform.position, transform.rotation);
+            //Instantiate(bullet, transform.position, transform.rotation);
 
-            //GameObject bullet = ObjectPooler.Instance.SpawnFromPool("Bullet", transform.position,transform.rotation);
-            //bullet.SetActive(true);
+            GameObject bulletObject = ObjectPooler.Instance.SpawnFromPool("Bullet", transform.position,transform.rotation);
+            bulletObject.SetActive(true);
            
         }
     }

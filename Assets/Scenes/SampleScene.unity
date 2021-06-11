@@ -520,6 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1129442552}
   - component: {fileID: 1129442551}
+  - component: {fileID: 1129442553}
   m_Layer: 0
   m_Name: Plan
   m_TagString: Plan
@@ -565,6 +566,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1129442553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129442550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9611e5da6735a2246b924697bd2697a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1638930715
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +613,9 @@ MonoBehaviour:
     size: 10
   - tag: Soldier
     prefab: {fileID: 9013049399907278119, guid: df3a40e2459c33140b10a0e9ad91eb8b, type: 3}
+    size: 10
+  - tag: Bullet
+    prefab: {fileID: 6149037412485797785, guid: 8806ebd03226a9c46845ffbeabcbca3d, type: 3}
     size: 10
 --- !u!4 &1638930717
 Transform:

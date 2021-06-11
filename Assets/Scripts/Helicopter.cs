@@ -15,9 +15,13 @@ public class Helicopter : MonoBehaviour, IPooledObject
     private bool wasDropSolder;
 
     private Vector3 screenBounds;
+
+    private const float defaultVelocity = 0.5f;
+    private const float timeExplosion = 0.5f;
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        
     }
     public void OnObjectSpawn()
     {
@@ -29,6 +33,7 @@ public class Helicopter : MonoBehaviour, IPooledObject
         timeDropSoldier = Random.Range(1.0f, 5.0f);
         startTime = Time.time;
         wasDropSolder = false;
+
 
     }
 
@@ -42,7 +47,6 @@ public class Helicopter : MonoBehaviour, IPooledObject
             pos.x -= speed * Time.deltaTime;
             if (pos.x < screenBounds.x * -1)
             {
-                //Destroy(this.gameObject);
                 this.gameObject.SetActive(false);
             }
         }
@@ -51,7 +55,6 @@ public class Helicopter : MonoBehaviour, IPooledObject
             pos.x += speed * Time.deltaTime;
             if (pos.x > screenBounds.x)
             {
-                //Destroy(this.gameObject);
                 this.gameObject.SetActive(false);
             }
         }
@@ -60,7 +63,7 @@ public class Helicopter : MonoBehaviour, IPooledObject
         float time = Time.time - startTime;
         if (time >= timeDropSoldier && !wasDropSolder)
         {
-            Debug.Log("Spawn Soldier");
+            //Debug.Log("Spawn Soldier");
             GameObject soldier = ObjectPooler.Instance.SpawnFromPool("Soldier", transform.position,transform.rotation);
             if(soldier == null)
             {
@@ -71,5 +74,15 @@ public class Helicopter : MonoBehaviour, IPooledObject
             wasDropSolder = true;
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+            Instantiate(fragment, transform.position, transform.rotation);
+            this.gameObject.SetActive(false);
+        }
     }
 }
