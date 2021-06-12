@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject bullet;
+    private float startTime;
     void Start()
     {
-
+        startTime = 0.0f;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -25,14 +26,19 @@ public class Gun : MonoBehaviour
         else if (rotationZ <= -90.0f) rotationZ = -90.0f;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetButton("Fire1"))
         {
-
+            float duration = Time.time - startTime;
+            if(duration>=0.5f)
+            {
+                GameObject bulletObject = ObjectPooler.Instance.SpawnFromPool("Bullet", transform.position, transform.rotation);
+                bulletObject.SetActive(true);
+                startTime = Time.time;
+            }
             //Instantiate(bullet, transform.position, transform.rotation);
 
-            GameObject bulletObject = ObjectPooler.Instance.SpawnFromPool("Bullet", transform.position,transform.rotation);
-            bulletObject.SetActive(true);
-           
+            
+
         }
     }
 }
