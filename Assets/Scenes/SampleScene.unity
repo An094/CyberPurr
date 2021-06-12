@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a22cd56f630da43bc36ce283953871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 6149037412485797785, guid: 8806ebd03226a9c46845ffbeabcbca3d, type: 3}
+  bullet: {fileID: 6349104386166038556, guid: 8806ebd03226a9c46845ffbeabcbca3d, type: 3}
 --- !u!212 &534048923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
     prefab: {fileID: 9013049399907278119, guid: df3a40e2459c33140b10a0e9ad91eb8b, type: 3}
     size: 10
   - tag: Bullet
-    prefab: {fileID: 6149037412485797785, guid: 8806ebd03226a9c46845ffbeabcbca3d, type: 3}
+    prefab: {fileID: 6349104386166038556, guid: 8806ebd03226a9c46845ffbeabcbca3d, type: 3}
     size: 10
   - tag: Fragment
     prefab: {fileID: 7134022745574193736, guid: 24a7508267939594d8a127c514534dba, type: 3}
