@@ -14,6 +14,9 @@ public class Soldier : MonoBehaviour, IPooledObject
 
     private Vector3 screenBounds;
     private const float defaultGravity = 0.1f;
+
+    private Vector2 vForce;
+    private bool isShooted;
     // Start is called before the first frame update
 
     void Start()
@@ -26,6 +29,7 @@ public class Soldier : MonoBehaviour, IPooledObject
     public void OnObjectSpawn()
     {
         endFly = false;
+        //isShooted = false;
         Vector2 pos = transform.position;
         direction = pos.x > 0 ? 0 : 1; //0 go to left, 1 go to right
         isRemove = false;
@@ -66,9 +70,9 @@ public class Soldier : MonoBehaviour, IPooledObject
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Plan")
+        if (collision.gameObject.tag == "Plan")
         {
-            if(!endFly)
+            if (!endFly)
             {
                 animator.SetBool("endFly", true);
                 GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -80,12 +84,13 @@ public class Soldier : MonoBehaviour, IPooledObject
                 this.gameObject.SetActive(false);
             }
         }
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             Debug.Log("End Game");
         }
-        if(collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Bullet")
         {
+            Score.Instance.IncreaseScore();
             rb2d.gravityScale = 5 * rb2d.gravityScale;
             isRemove = true;
         }
