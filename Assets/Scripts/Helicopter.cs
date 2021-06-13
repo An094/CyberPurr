@@ -5,9 +5,6 @@ using UnityEngine;
 public class Helicopter : MonoBehaviour, IPooledObject
 {
     public float speed;
-    //public GameObject fragment;
-    //public GameObject explosion;
-    //public GameObject soldier;
 
     private int direction;
     private float timeDropSoldier;
@@ -18,23 +15,18 @@ public class Helicopter : MonoBehaviour, IPooledObject
 
     private const float defaultVelocity = 0.5f;
     private const float timeExplosion = 0.5f;
-    void Start()
-    {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        
-    }
+
     public void OnObjectSpawn()
     {
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         Vector3 pos = transform.position;
         direction = (pos.x) > 0 ? 0 : 1;  // 0 go to left, 1 go to right
         if (direction == 0) transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
         else transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
-        timeDropSoldier = Random.Range(1.0f, 5.0f);
+        timeDropSoldier = Random.Range(1.0f, 10.0f);
         startTime = Time.time;
         wasDropSolder = false;
-
-
     }
 
     // Update is called once per frame
@@ -80,8 +72,6 @@ public class Helicopter : MonoBehaviour, IPooledObject
     {
         if(collision.gameObject.tag == "Bullet")
         {
-            //Instantiate(explosion, transform.position, transform.rotation);
-            //Instantiate(fragment, transform.position, transform.rotation);
             GameObject explosion = ObjectPooler.Instance.SpawnFromPool("Explosion", transform.position, transform.rotation);
             GameObject fragment = ObjectPooler.Instance.SpawnFromPool("Fragment", transform.position, transform.rotation);
             explosion.SetActive(true);

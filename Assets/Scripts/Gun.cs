@@ -26,19 +26,20 @@ public class Gun : MonoBehaviour
         else if (rotationZ <= -90.0f) rotationZ = -90.0f;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
 
-        if (Input.GetButton("Fire1"))
+        float duration = Time.time - startTime;
+        if(duration >= 0.5f)
         {
-            float duration = Time.time - startTime;
-            if(duration>=0.5f)
+            GetComponent<SpriteRenderer>().enabled = true;
+            if(Input.GetButton("Fire1"))
             {
                 GameObject bulletObject = ObjectPooler.Instance.SpawnFromPool("Bullet", transform.position, transform.rotation);
                 bulletObject.SetActive(true);
                 startTime = Time.time;
             }
-            //Instantiate(bullet, transform.position, transform.rotation);
-
-            
-
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

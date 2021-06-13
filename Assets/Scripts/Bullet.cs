@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IPooledObject  
 {
-
-    //public GameObject smokePrefab;
     private Rigidbody2D rb2d;
+    [SerializeField]
     private float speed;
     private Vector3 screenBounds;
 
@@ -17,7 +16,6 @@ public class Bullet : MonoBehaviour, IPooledObject
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         rb2d = GetComponent<Rigidbody2D>();
-        speed = 1.0f;
     }
 
     public void OnObjectSpawn()
@@ -25,7 +23,6 @@ public class Bullet : MonoBehaviour, IPooledObject
         float fAngle = transform.rotation.eulerAngles.z;
         float radian = Mathf.Deg2Rad * fAngle;
         vForce = new Vector2(Mathf.Sin(radian) * -1, Mathf.Cos(radian));
-        //Instantiate(smokePrefab);
     }
 
     // Update is called once per frame
@@ -40,7 +37,7 @@ public class Bullet : MonoBehaviour, IPooledObject
 
     private void FixedUpdate()
     {
-        rb2d.AddForce(vForce * speed, ForceMode2D.Impulse);
-        //smokePrefab.GetComponent<Rigidbody2D>().AddForce(vForce * speed, ForceMode2D.Impulse);
+        rb2d.AddForce(vForce * speed, ForceMode2D.Force);
     }
+
 }
