@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3142259397131788837}
   - component: {fileID: 8792638941624657224}
   - component: {fileID: 6040068519015202786}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TEX_Frag_4
   m_TagString: Fragment
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4834462755203105025}
   - component: {fileID: 6459578449203889890}
   - component: {fileID: 1336879550518014532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TEX_Frag_3
   m_TagString: Fragment
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 8960986660622608565}
   - component: {fileID: 344342858706462945}
   - component: {fileID: 1995518283706051730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TEX_Frag_8
   m_TagString: Fragment
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 6019394276508499253}
   - component: {fileID: 8974151358502808159}
   - component: {fileID: 6662790583002129269}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TEX_Frag_2
   m_TagString: Fragment
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 7139041494493588462}
   - component: {fileID: 2000299922937394221}
   - component: {fileID: 5861269171619289237}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TEX_Frag_5
   m_TagString: Fragment
   m_Icon: {fileID: 0}
@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 4117241731261333350}
   - component: {fileID: 8497351165056393590}
   - component: {fileID: 2221771724172326032}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TEX_Frag_1
   m_TagString: Fragment
   m_Icon: {fileID: 0}
@@ -865,7 +865,7 @@ GameObject:
   - component: {fileID: 4013903959948354974}
   - component: {fileID: 8325749274850999447}
   - component: {fileID: 1343449223392151930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TEX_Frag_6
   m_TagString: Fragment
   m_Icon: {fileID: 0}
@@ -986,7 +986,7 @@ GameObject:
   - component: {fileID: 2269202125725453069}
   - component: {fileID: 8690358620971203997}
   - component: {fileID: 884440478122150541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TEX_Frag_7
   m_TagString: Fragment
   m_Icon: {fileID: 0}

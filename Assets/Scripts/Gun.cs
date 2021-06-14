@@ -27,7 +27,7 @@ public class Gun : MonoBehaviour
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
 
         float duration = Time.time - startTime;
-        if(duration >= 0.5f)
+        if(duration >= 0.3f)
         {
             GetComponent<SpriteRenderer>().enabled = true;
             if(Input.GetButton("Fire1"))

@@ -68,7 +68,10 @@ public class Soldier : MonoBehaviour, IPooledObject
         }
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("End Game");
+            if(endFly)
+            {
+                collision.gameObject.SendMessage("Die");
+            }
         }
         if (collision.gameObject.tag == "Bullet")
         {
