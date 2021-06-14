@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
         cat.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300.0f, ForceMode2D.Force);
 
         helicopterController.SetActive(false);
+        //SoundManager.StopSound();
+
+        SoundManager.PlaySound("gameover");
+
         gameOver.SetActive(true);
 
         score.text = Score.Instance.GetScore().ToString();

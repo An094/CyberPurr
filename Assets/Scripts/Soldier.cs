@@ -75,6 +75,7 @@ public class Soldier : MonoBehaviour, IPooledObject
         }
         if (collision.gameObject.tag == "Bullet")
         {
+            SoundManager.PlaySound("explosion");
             Score.Instance.IncreaseScore();
             rb2d.gravityScale = 5 * rb2d.gravityScale;
             isRemove = true;

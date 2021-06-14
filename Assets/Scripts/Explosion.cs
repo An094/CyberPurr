@@ -8,6 +8,7 @@ public class Explosion : MonoBehaviour, IPooledObject
     // Start is called before the first frame update
     public void OnObjectSpawn()
     {
+        //SoundManager.PlaySound("explosion");
         animator = GetComponent<Animator>();
         this.gameObject.SetActive(true);
         StartCoroutine(StopAnimation());

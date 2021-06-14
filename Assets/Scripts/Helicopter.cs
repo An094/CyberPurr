@@ -79,6 +79,7 @@ public class Helicopter : MonoBehaviour, IPooledObject
             this.gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
             Score.Instance.IncreaseScore();
+            SoundManager.PlaySound("explosion");
         }
     }
 }

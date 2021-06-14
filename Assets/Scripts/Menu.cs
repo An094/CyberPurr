@@ -19,6 +19,7 @@ public class Menu : MonoBehaviour
         buttonStart.image.sprite = buttonClicked;
         prefabHelicopterController.SetActive(true);
         Gun.SetActive(true);
+        SoundManager.PlaySound("background");
         this.gameObject.SetActive(false);
     }
 }
