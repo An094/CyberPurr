@@ -6,43 +6,51 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public Sprite box;
-    public Sprite defaultSprite;
-    public GameObject gun;
-    public GameObject cat;
-    public GameObject helicopterController;
+    [SerializeField]
+    private Sprite m_sprBox;
+    
+    [SerializeField]
+    private GameObject m_objGun;
 
-    public Text score;
+    [SerializeField]
+    private GameObject m_objCat;
 
-    public GameObject gameOver;
+    [SerializeField]
+    private GameObject m_HelicopterController;
 
-    private bool isStopExplosion;
+    [SerializeField]
+    private Text m_txtScore;
+
+    [SerializeField]
+    private GameObject m_GameOver;
+
+    private bool m_isDead;
     private void Start()
     {
-        cat.transform.position = transform.position;
-        cat.transform.rotation = transform.rotation;
-        cat.SetActive(false);
+        m_objCat.transform.position = transform.position;
+        m_objCat.transform.rotation = transform.rotation;
+        m_objCat.SetActive(false);
+        m_isDead = false;
     }
-    public void Restart()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
+
     public void Die()
     {
         ContinuousExplosion();
-        gun.SetActive(false);
-        gameObject.GetComponent<SpriteRenderer>().sprite = box;
-        cat.SetActive(true);
-        cat.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300.0f, ForceMode2D.Force);
+        m_objGun.SetActive(false);
+        gameObject.GetComponent<SpriteRenderer>().sprite = m_sprBox;
+        m_objCat.SetActive(true);
+        m_objCat.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300.0f, ForceMode2D.Force);
 
-        helicopterController.SetActive(false);
-        //SoundManager.StopSound();
+        m_HelicopterController.SetActive(false);
 
-        SoundManager.PlaySound("gameover");
+        if (!m_isDead)
+        {
+            SoundManager.PlaySound("gameover");
+            m_isDead = true;
+        }
+        m_GameOver.SetActive(true);
 
-        gameOver.SetActive(true);
-
-        score.text = Score.Instance.GetScore().ToString();
+        m_txtScore.text = Score.Instance.GetScore().ToString();
     }
 
     private void ContinuousExplosion()

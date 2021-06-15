@@ -558,13 +558,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5c552ef7ccf14489d608d33efaf98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  box: {fileID: 21300000, guid: cde9d5d3d65657340bed096d3427558c, type: 3}
-  defaultSprite: {fileID: 21300000, guid: fb5740fc28e3b954fa6b32e7c323a3ee, type: 3}
-  gun: {fileID: 534048920}
-  cat: {fileID: 876025814}
-  helicopterController: {fileID: 110902648}
-  score: {fileID: 131254527}
-  gameOver: {fileID: 1532630389}
+  m_sprBox: {fileID: 21300000, guid: cde9d5d3d65657340bed096d3427558c, type: 3}
+  m_objGun: {fileID: 534048920}
+  m_objCat: {fileID: 876025814}
+  m_HelicopterController: {fileID: 110902648}
+  m_txtScore: {fileID: 131254527}
+  m_GameOver: {fileID: 1532630389}
 --- !u!1 &420461234
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +634,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 80e9dc8253fa6ce4d9eeeba6440213b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1506,8 +1505,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367716930}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 1398116696}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -1888,10 +1887,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa821b590158514ca93a5aa4f36743e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabHelicopterController: {fileID: 110902648}
-  Gun: {fileID: 534048920}
-  buttonStart: {fileID: 22481224}
-  buttonClicked: {fileID: 1431640384500294606, guid: 69f6938e324bd59469e399e4a1e9c532, type: 3}
+  m_HelicopterController: {fileID: 110902648}
+  m_Gun: {fileID: 534048920}
+  m_btnStart: {fileID: 22481224}
+  m_sprClicked: {fileID: 1431640384500294606, guid: 69f6938e324bd59469e399e4a1e9c532, type: 3}
 --- !u!1 &1430656832
 GameObject:
   m_ObjectHideFlags: 0
