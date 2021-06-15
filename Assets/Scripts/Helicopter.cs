@@ -22,7 +22,7 @@ public class Helicopter : MonoBehaviour, IPooledObject
         if (direction == 0) transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
         else transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
-        timeDropSoldier = Random.Range(1.0f, 10.0f);
+        timeDropSoldier = Random.Range(1.0f, 8.0f);
         startTime = Time.time;
         wasDropSolder = false;
     }

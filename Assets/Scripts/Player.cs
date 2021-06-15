@@ -43,14 +43,7 @@ public class Player : MonoBehaviour
 
         m_HelicopterController.SetActive(false);
 
-        if (!m_isDead)
-        {
-            SoundManager.PlaySound("gameover");
-            m_isDead = true;
-        }
-        m_GameOver.SetActive(true);
-
-        m_txtScore.text = Score.Instance.GetScore().ToString();
+        StartCoroutine(Gameover());
     }
 
     private void ContinuousExplosion()
@@ -65,5 +58,22 @@ public class Player : MonoBehaviour
             GameObject explosion = ObjectPooler.Instance.SpawnFromPool("Explosion", transform.position, transform.rotation);
             yield return new WaitForSeconds(1.0f);
         }
+    }
+
+    IEnumerator Gameover()
+    {
+        yield return new WaitForSeconds(2.0f);
+        m_GameOver.SetActive(true);
+
+        m_txtScore.text = Score.Instance.GetScore().ToString();
+        if (!m_isDead)
+        {
+            m_isDead = true;
+            SoundManager.PlaySound("gameover");
+            yield return new WaitForSeconds(3.0f);
+            SoundManager.StopSound();
+            
+        }
+       
     }
 }

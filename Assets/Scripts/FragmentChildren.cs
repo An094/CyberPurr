@@ -21,7 +21,7 @@ public class FragmentChildren : MonoBehaviour
 
     IEnumerator DestroyAfterCollision()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         this.gameObject.SetActive(false);
         this.transform.parent.gameObject.SetActive(false);
     }

@@ -8,10 +8,14 @@ public class HelicopterController : MonoBehaviour
     private Vector3 screenBounds;
     private float startTime;
     private float maxspawnTime;
+    private float minHeight;
+    private float maxHeight;
     // Start is called before the first frame update
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        minHeight = screenBounds.y * 0.7f;
+        maxHeight = screenBounds.y * 0.9f;
         startTime = Time.time;
         maxspawnTime = 3.0f;
         StartCoroutine(helicopterWave());
@@ -21,7 +25,7 @@ public class HelicopterController : MonoBehaviour
     {
         int side = Random.Range(0, 2);
         Vector2 pos;
-        float height = Random.Range(screenBounds.y * 0.7f, screenBounds.y * 0.9f);
+        float height = Random.Range(minHeight, maxHeight);
         if (side == 0)
         {
             pos = new Vector2(-screenBounds.x, height);
@@ -53,7 +57,7 @@ public class HelicopterController : MonoBehaviour
     void Update()
     {
         float duration = Time.time - startTime;
-        if(duration >=30.0f && maxspawnTime > 1.0f)
+        if(duration >=30.0f && maxspawnTime > 1.5f)
         {
             maxspawnTime -= 0.5f;
             startTime = Time.time;
