@@ -13,8 +13,10 @@ public class Soldier : MonoBehaviour, IPooledObject
     int direction;
 
     private Vector3 screenBounds;
-    private const float defaultGravity = 0.15f;
-    private const float defaultMass = 0.5f;
+    private const float defaultGravity = 0.1f;
+    private const float defaultMass = 3.0f;
+
+    private float gravityAfterCollision = 0.5f;
 
     public void OnObjectSpawn()
     {
@@ -75,10 +77,18 @@ public class Soldier : MonoBehaviour, IPooledObject
         }
         if (collision.gameObject.tag == "Bullet")
         {
-            if(!isRemove) SoundManager.PlaySound("explosion");
+            if (!isRemove)
+            {
+                SoundManager.PlaySound("explosion");
+                //float fAngle = transform.rotation.eulerAngles.z;
+                //float radian = Mathf.Deg2Rad * fAngle;
+                //Vector2 vForce = new Vector2(Mathf.Sin(radian) * -1, Mathf.Cos(radian));
+                rb2d.AddForce(Vector2.up * 500.0f, ForceMode2D.Force);
+                isRemove = true;
+            }
             Score.Instance.IncreaseScore();
-            rb2d.gravityScale = 3 * rb2d.gravityScale;
-            isRemove = true;
+            rb2d.gravityScale = gravityAfterCollision;
+            
         }
     }
 
@@ -88,11 +98,11 @@ public class Soldier : MonoBehaviour, IPooledObject
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         if(direction == 0)
         {
-            rb2d.AddForce(new Vector2(speed * -1.0f, 0.0f));
+            rb2d.velocity = Vector2.left * speed;
         }
         else
         {
-            rb2d.AddForce(new Vector2(speed, 0.0f));
+            rb2d.velocity = Vector2.right * speed;
         }
     }
 }

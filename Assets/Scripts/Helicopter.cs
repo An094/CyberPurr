@@ -13,8 +13,6 @@ public class Helicopter : MonoBehaviour, IPooledObject
 
     private Vector3 screenBounds;
 
-    private const float defaultVelocity = 0.5f;
-    private const float timeExplosion = 0.5f;
 
     public void OnObjectSpawn()
     {

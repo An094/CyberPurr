@@ -7,7 +7,7 @@ public class FragmentChildren : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float randValue1 = Random.Range(-1.0f, 1.0f);
+        float randValue1 = Random.Range(-2.0f, 2.0f);
         float randValue2 = Random.Range(3.0f, 5.0f);
         GetComponent<Rigidbody2D>().AddForce(new Vector2(randValue1, randValue2) * 50.0f, ForceMode2D.Force);
     }
@@ -21,7 +21,7 @@ public class FragmentChildren : MonoBehaviour
 
     IEnumerator DestroyAfterCollision()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         this.gameObject.SetActive(false);
         this.transform.parent.gameObject.SetActive(false);
     }
