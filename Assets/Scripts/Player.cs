@@ -35,13 +35,19 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        if (m_isDead) return;
+        m_isDead = true;
+
         ContinuousExplosion();
+
         m_objGun.SetActive(false);
         gameObject.GetComponent<SpriteRenderer>().sprite = m_sprBox;
         m_objCat.SetActive(true);
         m_objCat.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300.0f, ForceMode2D.Force);
 
         m_HelicopterController.SetActive(false);
+
+        SoundManager.PlaySound("meow");
 
         StartCoroutine(Gameover());
     }
@@ -66,14 +72,11 @@ public class Player : MonoBehaviour
         m_GameOver.SetActive(true);
 
         m_txtScore.text = Score.Instance.GetScore().ToString();
-        if (!m_isDead)
-        {
-            m_isDead = true;
-            SoundManager.PlaySound("gameover");
-            yield return new WaitForSeconds(3.0f);
-            SoundManager.StopSound();
-            
-        }
+
+        SoundManager.PlaySound("gameover");
+        yield return new WaitForSeconds(3.0f);
+        SoundManager.StopSound();
+
        
     }
 }

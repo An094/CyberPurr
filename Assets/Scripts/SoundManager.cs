@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public static AudioClip explosionSound;
     public static AudioClip backgroundMusic;
     public static AudioClip gameoverSound;
+    public static AudioClip meowSound;
 
     private static AudioSource audioSrc;
 
@@ -16,6 +17,7 @@ public class SoundManager : MonoBehaviour
         explosionSound = Resources.Load<AudioClip>("Sounds/explosion");
         backgroundMusic = Resources.Load<AudioClip>("Sounds/background");
         gameoverSound = Resources.Load<AudioClip>("Sounds/gameover");
+        meowSound = Resources.Load<AudioClip>("Sounds/meow");
         audioSrc = GetComponent<AudioSource>();
     }
     public static void PlaySound(string clip)
@@ -37,6 +39,11 @@ public class SoundManager : MonoBehaviour
             case "gameover":
                 {
                     audioSrc.PlayOneShot(gameoverSound, 3.0f);
+                    break;
+                }
+            case "meow":
+                {
+                    audioSrc.PlayOneShot(meowSound, 2.0f);
                     break;
                 }
         }

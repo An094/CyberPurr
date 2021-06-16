@@ -17,7 +17,7 @@ public class HelicopterController : MonoBehaviour
     {
         m_ScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         m_fLastTime = 0.0f;
-        m_fMaxSpawnTime = 4.0f;
+        m_fMaxSpawnTime = 3.0f;
         StartCoroutine(helicopterWave());
     }
 
