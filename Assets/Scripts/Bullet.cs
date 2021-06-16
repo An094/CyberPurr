@@ -33,11 +33,16 @@ public class Bullet : MonoBehaviour, IPooledObject
         {
             this.gameObject.SetActive(false);
         }
+        Vector2 pos = transform.position;
+        pos.x += vForce.x * speed * Time.deltaTime;
+        pos.y += vForce.y * speed * Time.deltaTime;
+        transform.position = pos;
+       
     }
 
     private void FixedUpdate()
     {
-        rb2d.AddForce(vForce * speed, ForceMode2D.Force);
+        //rb2d.AddForce(vForce * speed, ForceMode2D.Force);
     }
 
 }

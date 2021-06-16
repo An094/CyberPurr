@@ -6,10 +6,12 @@ public class Gun : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject bullet;
-    private float startTime;
+    private float m_fLastTime;
+
+    private const float LOAD_TIME = 0.5f;
     void Start()
     {
-        startTime = 0.0f;
+        m_fLastTime = 0.0f;
     }
 
 
@@ -26,15 +28,15 @@ public class Gun : MonoBehaviour
         else if (rotationZ <= -90.0f) rotationZ = -90.0f;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
 
-        float duration = Time.time - startTime;
-        if(duration >= 0.3f)
+        m_fLastTime += Time.deltaTime;
+        if(m_fLastTime >= LOAD_TIME)
         {
             GetComponent<SpriteRenderer>().enabled = true;
             if(Input.GetButton("Fire1"))
             {
                 GameObject bulletObject = ObjectPooler.Instance.SpawnFromPool("Bullet", transform.position, transform.rotation);
                 bulletObject.SetActive(true);
-                startTime = Time.time;
+                m_fLastTime = 0.0f;
             }
         }
         else

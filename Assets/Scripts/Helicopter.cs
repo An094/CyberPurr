@@ -2,29 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum DIRECTION
+{
+    LEFT,
+    RIGT
+}
 public class Helicopter : MonoBehaviour, IPooledObject
 {
-    public float speed;
+    [SerializeField]
+    private float m_fSpeed;
 
-    private int direction;
-    private float timeDropSoldier;
-    private float startTime;
-    private bool wasDropSolder;
+    private DIRECTION m_direction;
+    private float m_fTimeDropSoldier;
+    private float m_fLastTime;
+    private bool m_wasDropSolder;
 
-    private Vector3 screenBounds;
-
+    private Vector3 m_ScreenBounds;
+    void Start()
+    {
+        m_ScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+    }
 
     public void OnObjectSpawn()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         Vector3 pos = transform.position;
-        direction = (pos.x) > 0 ? 0 : 1;  // 0 go to left, 1 go to right
-        if (direction == 0) transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+        m_direction = (pos.x) > 0 ? DIRECTION.LEFT : DIRECTION.RIGT;
+        if (m_direction.Equals(DIRECTION.LEFT)) transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
         else transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
-        timeDropSoldier = Random.Range(1.0f, 8.0f);
-        startTime = Time.time;
-        wasDropSolder = false;
+        m_fTimeDropSoldier = Random.Range(1.0f, 8.0f);
+        m_fLastTime = 0.0f;
+        m_wasDropSolder = false;
     }
 
     // Update is called once per frame
@@ -32,26 +40,26 @@ public class Helicopter : MonoBehaviour, IPooledObject
     {
         Vector2 pos = transform.position;
 
-        if (direction == 0)
+        if (m_direction == DIRECTION.LEFT)
         {
-            pos.x -= speed * Time.deltaTime;
-            if (pos.x < screenBounds.x * -1)
+            pos.x -= m_fSpeed * Time.deltaTime;
+            if (pos.x < -m_ScreenBounds.x)
             {
                 this.gameObject.SetActive(false);
             }
         }
         else
         {
-            pos.x += speed * Time.deltaTime;
-            if (pos.x > screenBounds.x)
+            pos.x += m_fSpeed * Time.deltaTime;
+            if (pos.x > m_ScreenBounds.x)
             {
                 this.gameObject.SetActive(false);
             }
         }
         transform.position = pos;
 
-        float time = Time.time - startTime;
-        if (time >= timeDropSoldier && !wasDropSolder)
+        m_fLastTime += Time.deltaTime;
+        if (m_fLastTime >= m_fTimeDropSoldier && !m_wasDropSolder)
         {
             //Debug.Log("Spawn Soldier");
             GameObject soldier = ObjectPooler.Instance.SpawnFromPool("Soldier", transform.position,transform.rotation);
@@ -61,7 +69,7 @@ public class Helicopter : MonoBehaviour, IPooledObject
                 return;
             }
             soldier.SetActive(true);
-            wasDropSolder = true;
+            m_wasDropSolder = true;
         }
 
     }
@@ -71,13 +79,17 @@ public class Helicopter : MonoBehaviour, IPooledObject
         if(collision.gameObject.tag == "Bullet")
         {
             GameObject explosion = ObjectPooler.Instance.SpawnFromPool("Explosion", transform.position, transform.rotation);
-            GameObject fragment = ObjectPooler.Instance.SpawnFromPool("Fragment", transform.position, transform.rotation);
             explosion.SetActive(true);
+
+            //Drop fragment
+            GameObject fragment = ObjectPooler.Instance.SpawnFromPool("Fragment", transform.position, transform.rotation);
             fragment.SetActive(true);
+
             this.gameObject.SetActive(false);
-            collision.gameObject.SetActive(false);
-            Score.Instance.IncreaseScore();
+            collision.gameObject.SetActive(false);  //bullet
+            Score.Instance.IncreaseScore();         
             SoundManager.PlaySound("explosion");
         }
     }
+
 }
